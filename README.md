@@ -9,7 +9,15 @@ Este repositório contém a vitrine pública da Aurora Glamour para GitHub Pages
 
 ## Publicação
 
-Em **Settings → Pages → Build and deployment → Source**, selecione **GitHub Actions**. A automação publica o conteúdo após commits na branch main. O endereço esperado após a confirmação é:
+**Situação da primeira tentativa (02/11/2026):** o workflow tentou publicar, mas o GitHub recusou porque Pages ainda não está ativado. Para concluir:
+
+1. Abra https://github.com/borizy/vendas/settings/pages .
+2. Em **Build and deployment → Source**, escolha **GitHub Actions**.
+3. Abra https://github.com/borizy/vendas/actions/workflows/pages.yml .
+4. Clique **Run workflow** (se aparecer; use a aba **Actions** no navegador desktop) e selecione **main**.
+5. Veja a execução em verde e a URL indicada em Settings → Pages.
+
+Depois disso, a automação publica atualizações do site nos commits em main. O endereço esperado após confirmação é:
 
 https://borizy.github.io/vendas/
 
