@@ -1,0 +1,10 @@
+{
+  "storeName": "Aurora Glamour",
+  "whatsappNumber": "5534999936104",
+  "instagramUrl": "https://www.instagram.com/aurora.glamourr/",
+  "automaticOrders": {
+    "enabled": false,
+    "endpoint": "",
+    "turnstileSiteKey": ""
+  }
+}

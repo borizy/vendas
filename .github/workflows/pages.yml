@@ -1,0 +1,49 @@
+name: Publicar Aurora Glamour no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'css/**'
+      - 'js/**'
+      - 'data/**'
+      - 'assets/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publicar vitrine
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Baixar arquivos
+        uses: actions/checkout@v4
+      - name: Preparar apenas os arquivos públicos da loja
+        run: |
+          mkdir -p site-dist
+          cp index.html site-dist/
+          cp -R css js data site-dist/
+          if [ -d assets ]; then cp -R assets site-dist/; fi
+          touch site-dist/.nojekyll
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+      - name: Enviar arquivos da vitrine
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './site-dist'
+      - name: Publicar site
+        id: deployment
+        uses: actions/deploy-pages@v4
